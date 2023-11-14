@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojas</title>
+    <script src="bibliotecas/jQuery-3.6.1.min.js"></script>
+    <script src="bibliotecas/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bibliotecas/bootstrap.min.css">
+    <link href="css/admin.css" rel="stylesheet">
+    <link href="bibliotecas/bootstrap-icons.css" rel="stylesheet">
+    <script src="js/admin.js"></script>
+     
+</head>
+<body class="">
+
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Administrador</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <select name="" id="" class="mx-4 form-select" style="">
+          <option value="">Todos produtos</option>
+        </select>
+      </li>
+    </ul>
+  </header>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse text-center">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <div><img class=""  id = "img_perfil"  src="img/loja_1/product-3.jpg" alt=""></div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file"></span>
+                Nome gerente
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="shopping-cart"></span>
+                Cadastrar Funcionarios
+              </a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="shopping-cart"></span>
+                Estatistica Funcionarios
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="shopping-cart"></span>
+                Caixa de venda
+              </a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+  
+      <main id="stock" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="row pt-3 pb-2 mb-3 border-bottom">
+          <div class="col-10 col-2">
+            <h1 class="h2">Venda 90.000Kz Resto: 19.910.000Kz Stock: 20.000.000Kz</h1>
+          </div>
+          
+          <div class="col-2 d-flex justify-content-end" style="">
+             
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-target="#modal_cad_prod" data-bs-toggle="modal">Cadastrar</button>
+            </div>
+           
+          </div>
+        </div>
+        <div>
+          <div class="container" id="dadosStoque">
+            <div class="row row-cols-3 row-cols-md-6 text-dark">
+              <div class="col position-relative shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+               <p class="text-center"><strong>Chocolate</strong></p>
+                <a href="#" class="abrInfo">
+                  <i class="bi bi-chevron-double-up text-start"></i> 
+                  <i class="bi bi-trash float-end"></i>
+                  <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+                
+                </a>
+                <div class="info card text-start">
+                  <a href="#" class="fechaInfo text-center" >
+                    <i class="bi bi-chevron-double-down"></i></a>
+                  <h6>Nome Prod</h6>
+                  <p>
+                    <span class="d-block">Stock 10</span>
+                    <span class="d-block">Venda 4</span>
+                  </p>
+                </div>
+              </div>
+              <div class="col position-relative shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+                <a href="#" ><i class="bi bi-chevron-double-up"></i></a>
+
+              </div>
+              <div class="col shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+                <a href="#" ><i class="bi bi-chevron-double-up"></i></a>
+              </div>
+              <div class="col shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+                <a href="#" ><i class="bi bi-chevron-double-up"></i></a>
+              </div>
+              <div class="col shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+                <a href="#" ><i class="bi bi-chevron-double-up"></i></a>
+              </div>
+              <div class="col shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+                <a href="#" ><i class="bi bi-chevron-double-up"></i></a>
+              </div>
+              <div class="col shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+                <a href="#" ><i class="bi bi-chevron-double-up"></i></a>
+              </div>
+              <div class="col shadow-sm rounded" style="">
+                <img src="img/loja_1/chugo_1.jpg"  alt="" width="100%" height="100px">
+                <a href="#" ><i class="bi bi-chevron-double-up"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      
+      
+      </main>
+      <main id="funcionarios" class="col-md-9 ms-sm-auto col-lg-10 px-md-4 d-none">
+        <div class="row pt-3 pb-2 mb-3 border-bottom">
+          <div class="col-4">
+            <h1 class="h2">Funcionarios</h1>
+          </div>
+          
+          <div class="col-8 d-flex justify-content-end" style="">
+            <select name="" id="" class="mx-4 form-select" style="">
+              <option value="">Todos produtos</option>
+            </select>
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-target="#modal_cad_prod" data-bs-toggle="modal">Cadastrar</button>
+            </div>
+           
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+ 
+</body>
+<script src="js/admin.js"></script>
+</html>
+
+<!--MODAL CADASTRAR PRODUTO-->
+<div class="modal fade" id="modal_cad_prod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div>
+            <input type="file" name="" id="" class="form-control">
+          </div>
+          <div class=" mb-3">
+            <label for="">codigo</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Nome produto</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Marca</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Quantidade</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Valor de compra</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Valor de venda</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Fornecedor</label>
+          </div>
+          <div class="form-floating mb-3">
+      
+            <select class="form-select" id="floatingInput" name="" id="">
+              <option value="">fornecedor</option>
+            </select>
+            <label for="floatingInput">Tipo produto</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

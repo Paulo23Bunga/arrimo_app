@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojas</title>
+    <script src="bibliotecas/jQuery-3.6.1.min.js"></script>
+    <script src="bibliotecas/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bibliotecas/bootstrap.min.css">
+    <link href="css/admin.css" rel="stylesheet">
+    <link href="bibliotecas/bootstrap-icons.css" rel="stylesheet">
+    <script src="js/admin.js"></script>
+
+    <style>
+     @media (min-width: 767px) {
+     .infodados{
+            min-height: 150px !important;
+          
+          }
+        }
+        @media (max-width: 767px) {
+          h2{
+            font-size: 12px !important;
+          }
+         .h2{
+          font-size: 12px !important;
+          margin: 0.5em auto !important;
+         }
+         h5{
+          font-size: 11px !important;
+         }
+         p{
+            font-size: 12px !important;
+         }
+         
+          .infodados{
+            height: 100px !important;
+          
+          }
+          td{
+            font-size: 11px;
+          }
+          .name{
+            white-space: nowrap;
+          }
+          legend{
+            font-size: 12px !important;
+          }
+          #bntinput .btn-group{
+            width: 100% !important;
+          }
+          #bntinput select{
+            width: 100% !important;
+          }
+
+          header .navbar-nav{
+            
+            width: 100%;
+          }
+          .grupo-btn{
+            width: 100%;
+            margin: 0 !important;
+          }
+        
+        }
+ 
+    </style>
+     
+</head>
+<body class="">
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow nav_header">
+        <a class="navbar-brand col-md-3  me-0 px-3 fs-6 text-center" href="#">
+          <select class="form-select form-select-sm bg-dark text-light" aria-label=".form-select-sm example" style="width: 180px; height: 29px;">
+            <option selected="">Administrador Loja 1</option>
+            <option value="1">Administrador Loja 2</option>
+            <option value="2">Administrador Loja 3</option>
+          </select>
+          
+        </a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="input-group w-100 esconder">
+          <span class="input-group-text form-control-dark " id="basic-addon1"><i class="bi bi-search"></i></span>
+          <input class="form-control form-control-dark rounded-0 border-0 sm" type="text" placeholder="Pesquisar produtos, clientes ou fornecedores" aria-label="Search">
+          <select class="form-select form-select-sm nav_header nav_header_1 form-control-dark text-light rounded-0 border-0 sm " aria-label=".form-select-sm example" style="max-width: 150px;height: 35px;">
+            <option selected="">Todos produtos</option>
+            <option value="1">Mais vendidos</option>
+            <option value="2">Menos vendidos</option>
+          </select>
+        </div>
+        
+        <div class="navbar-nav esconder" style="">
+          <div class="nav-item text-nowrap d-flex align-items-center">
+            <div class="btn-group me-2 mx-1 grupo-btn">
+              <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal_cad_prod">Cadastrar produtos</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" id = "bt_stock" style="min-width: 150px;">Stock</button>
+            </div>
+          </div>
+        </div>
+      </header>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block bg-light sidebar collapse text-center">
+  
+        <div class="position-sticky pt-3 text-center" id="form_menu">
+          <br><br>
+          <div><img class=""  id = "img_perfil"  src="img/loja_1/Celestino.jpg" alt=""><br><br>Celestino Fragoso</div><br>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="#"  class="btn bg-preto rounded-pill w-100 bt_menu" data-bt="1">Alterar perfil<strong class="float-end" style="font-size: 21px;"> > </strong></a>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="#"  class="btn bg-preto rounded-pill w-100 bt_menu" data-bt="2">Cadastrar Funcionario<strong class="float-end" style="font-size: 21px;"> > </strong></a>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="#"  class="btn bg-preto rounded-pill w-100 bt_menu" data-bt="3">Historico de venda<strong class="float-end" style="font-size: 21px;"> > </strong></a>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="#" id = "bt_venda"  class="btn bg-preto rounded-pill w-100">Caixa de Venda<strong class="float-end" style="font-size: 21px;"> > </strong></a>
+            </li>
+            
+          </ul>
+        </div>
+        <!--FORM ALTERAR PERFIL-->
+        <div class="d-none todos_menus modal-body" id="form_alt_perfil">
+          <div class="modal-header offcanvas-header">
+            <button class="btn btn-default btn-sm" > <i class="bi bi-arrow-left-square-fill bt_menu bt_back" data-bt="0"></i></button>
+          </div>
+          <label for="">Alterar perfil</label>
+          <form>
+            <label for="">Informações pessoais</label>
+            <div class=" mb-3">
+              <i class="bi bi-qr-code-scan"></i>
+            </div>
+            <div class="form-floating form-floating-sm mb-3">
+              <input type="text" class="form-control form-control-sm" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Nome</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">BI Nª</label>
+            </div>
+            <div class="d-flex">
+              <div class="form-floating" style="width: 130px;">
+                <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Nascimento</label>
+              </div>
+              <div class="form-floating mx-1">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option >Masculino</option>
+                  <option value="1">Femenino</option>
+                </select>
+                <label for="floatingInput">Genero</label>
+              </div>
+              <div class="form-floating mx-1">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option selected>Angolana</option>
+                </select>
+                <label for="floatingInput">Nacionalidade</label>
+              </div>
+             
+            </div>
+            <label for="">Informações contactos</label>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Telefone</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Casa</label>
+            </div>
+            <label for="">Informações profissionais</label>
+            <div class="d-flex">
+              <div class="form-floating mx-1">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option >Masculino</option>
+                  <option value="1">Administrador</option>
+                </select>
+                <label for="floatingInput">Cargo</label>
+              </div>
+              <div class="form-floating mx-1">
+                <select class="form-select" id="floatingInput" name="" id="">
+                  <option value="">Venda de caixa</option>
+                </select>
+                <label for="floatingInput">Departamento</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Horario de trabalho</label>
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="form-floating mx-1">
+                <input type="date" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingInput">Inicio</label>
+              </div>
+              <div class="form-floating mx-1">
+                <select class="form-select" id="floatingInput" name="" id="">
+                  <option value="">Venda de caixa</option>
+                </select>
+                <label for="floatingInput">Tipo contrato</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Salário</label>
+              </div>
+            </div>
+            <div class="modal-footer text-center">
+              <button type="button" class="btn btn-secondary">Cancelar</button>
+              <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        
+            
+          </form>
+        </div>
+
+          <!--FORM CAD FUNCIONARIOS-->
+          <div class="d-none todos_menus modal-body" id="form_cad_funcionarios">
+            <i class="bi bi-arrow-left-square-fill bt_menu bt_back" data-bt="0"></i>
+            <label for="">Cadastrar funcionários</label>
+            <form>
+              <label for="">Informações pessoais</label>
+              <div class=" mb-3">
+                <i class="bi bi-qr-code-scan"></i>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Nome</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">BI Nª</label>
+              </div>
+              <div class="d-flex">
+                <div class="form-floating" style="width: 130px;">
+                  <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">Nascimento</label>
+                </div>
+                <div class="form-floating mx-1">
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option >Masculino</option>
+                    <option value="1">Femenino</option>
+                  </select>
+                  <label for="floatingInput">Genero</label>
+                </div>
+                <div class="form-floating mx-1">
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Angolana</option>
+                  </select>
+                  <label for="floatingInput">Nacionalidade</label>
+                </div>
+               
+              </div>
+              <label for="">Informações contactos</label>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Telefone</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Casa</label>
+              </div>
+              <label for="">Informações profissionais</label>
+              <div class="d-flex">
+                <div class="form-floating mx-1">
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option >Masculino</option>
+                    <option value="1">Administrador</option>
+                  </select>
+                  <label for="floatingInput">Cargo</label>
+                </div>
+                <div class="form-floating mx-1">
+                  <select class="form-select" id="floatingInput" name="" id="">
+                    <option value="">Venda de caixa</option>
+                  </select>
+                  <label for="floatingInput">Departamento</label>
+                </div>
+                <div class="form-floating mb-3" style="width: 80px;">
+                  <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                  <label for="floatingPassword">Horario</label>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="form-floating mx-1" style="width: 130px;">
+                  <input type="date" class="form-control" id="floatingPassword" placeholder="Password">
+                  <label for="floatingInput">Inicio</label>
+                </div>
+                <div class="form-floating mx-1">
+                  <select class="form-select" id="floatingInput" name="" id="">
+                    <option value="">Venda de caixa</option>
+                  </select>
+                  <label for="floatingInput">Tipo contrato</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                  <label for="floatingPassword">Salário</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+              </div>
+          
+              
+            </form>
+          </div>
+          <!--FORM HISTORICO DE VENDA-->
+          <div class="d-none todos_menus modal-body" id="form_historico_venda">
+            <i class="bi bi-arrow-left-square-fill bt_menu bt_back" data-bt="0"></i>
+            <label for="">Historico de venda</label>
+                <div>
+                  <ul class="list-group">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                  </ul>
+                </div>
+          </div>
+      </nav>
+  
+      <main id="vanda" class="col-md-9 ms-sm-auto col-lg-9 px-md-4">
+        <!--PARTE DE INICIAL-->
+       <div id="div_inicio" class="div_switch">
+              <div class="row py-2">
+                  <div class="col-12 col-md-6 col-xxl-7">
+                      <div class="row">
+                        <div class="col-6 col-md-12 my-1 mx-0">
+        
+                          <!-- Card -->
+                          <div class="card shadow-sm bg-light infodados">
+                              <div class="card-body ">
+                                  <div class="row">
+                                      <div class="col d-flex justify-content-between position-relative">
+
+                                          <div>
+                                              <!-- Title -->
+                                              <h5 class="d-flex align-items-center text-uppercase text-muted fw-semibold mb-2">
+                                                  <span class="legend-circle-sm bg-success"></span>
+                                                  Vendas Diaria
+                                              </h5>
+
+                                              <!-- Subtitle -->
+                                              <h2 class="mb-0 text-success">
+                                                $80.490,00 KZ
+                                              </h2>
+
+                                          </div>
+
+                                          <span class="text-success position-absolute" style="right: 0 !important; top: -20px;">
+                                              <i class="bi bi-cash-stack" style="font-size: 31px;"></i>
+                                          </span>
+                                      </div>
+                                  </div> <!-- / .row -->
+                              </div>
+                          </div>
+                        </div>
+        
+                        <div class="col-6 col-md-12 my-1 mx-0">
+                            <!-- Card -->
+                            <div class="card shadow-sm bg-light infodados">
+                                <div class="card-body" style="">
+                                
+
+                                    <div class="row">
+                                      <div class="col d-flex justify-content-between position-relative">
+
+                                          <div class="">
+                                              <!-- Title -->
+                                              <h5 class="d-flex align-items-center text-uppercase text-muted fw-semibold mb-2" style="">
+                                                <span class="legend-circle-sm bg-danger"></span>
+                                                    Pagamentos
+                                              </h5>
+
+                                              <!-- Subtitle -->
+                                              <h2 class="mb-0 text-dark">
+                                                <b>Total: </b> $80.490,00 KZ
+                                              </h2>
+
+                                              <!-- Comment -->
+                                              <p class="text-muted mb-0">
+                                                  <b>Cash</b>: $30.240,00 KZ
+                                              </p>
+
+                                              <!-- Comment -->
+                                              <p class="text-muted mb-0">
+                                                  <b>TPA</b>: $50.250,00 KZ
+                                              </p>
+                                          </div>
+
+                                          <span class="text-primary  position-absolute" style="right: 0 !important; top: -20px;">
+                                            <i class="bi bi-credit-card-2-back-fill" style="font-size: 31px;"></i>
+                                          </span>
+                                      </div>
+                                  </div> <!-- / .row -->
+                                </div>
+                            </div>
+                        </div>
+                      </div> <!-- / .row -->
+                  </div>
+
+                  <div class="col-12 col-md-6 col-xxl-5">
+                    <div class="row">
+                    
+      
+                        <div class="col-md-12 my-1 mx-0">
+                            <!-- Card -->
+                            <div class="card shadow-sm bg-light infodados">
+                                <div class="card-body">
+                            
+                                    <div class="row">
+                                      <div class="col d-flex justify-content-between">
+
+                                          <div>
+                                              <!-- Title -->
+                                              <h5 class="d-flex align-items-center text-uppercase text-muted fw-semibold mb-2">
+                                                <span class="legend-circle-sm bg-danger"></span>
+                                                STOCK
+                                              </h5>
+
+                                              <!-- Subtitle -->
+                                              <h2 class="mb-0 text-dark">
+                                                <b>Total</b>: $80.490,00 KZ
+                                              </h2>
+
+                                              <!-- Comment -->
+                                              <p class="text-muted mb-0">
+                                                <b>Restante</b>:   $720.000,00 KZ
+                                              </p>
+                                              <!-- Comment -->
+                                              <p class="text-muted mb-0">
+                                                  <b>Qtd</b>: $800.490,00 KZ
+                                              </p>
+                                          </div>
+
+                                          <span class="text-primary" data-bs-toggle="modal" data-bs-target="#modal_fornecedor">
+                                            <i class="bi bi-box-seam-fill position-relative" style="font-size: 31px;">
+                                              <span class="position-absolute top-0 start-100 translate-middle" style="font-size: 20px;" >
+                                                <i class="bi bi-bell-fill text-danger" style="font-size: 20px;"></i>
+                                              </span>
+                                            
+                                            </i>
+                                          </span>
+                                      </div>
+                                  </div> <!-- / .row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- / .row -->
+                  </div>
+
+              </div> <!-- / .row -->
+              <!-- Table -->
+                       <div class="table-responsive">
+                           <table class="table align-middle table-edge table-nowrap mb-0">
+                             <legend class="card-header-title h4 text-uppercase">
+                              Lista de Produtos mais vendidos
+                             </legend>
+                               <thead class="thead-light">
+                                   <tr>
+                                       <th style="min-width: 100px !important;">
+                                           <a href="javascript: void(0);" class="text-muted list-sort" data-sort="name">
+                                               Descrição
+                                           </a>
+                                       </th>
+                                       <th class="text-end">
+                                           <a href="javascript: void(0);" class="text-muted list-sort" data-sort="price">
+                                               Preço
+                                           </a>
+                                       </th>
+                                       <th class="text-end">
+                                           <a href="javascript: void(0);" class="text-muted list-sort" data-sort="quantity">
+                                               Qtd
+                                           </a>
+                                       </th>
+                                       
+                                   </tr>
+                               </thead>
+    
+                               <tbody class="list"><tr>
+                                       <td class="name fw-bold">
+                                        <img src="img/loja_1/agua.jpg" class="rounded" alt="" width="50" height="50">
+                                        Água pura 500ml</td>
+                                       <td class="price text-end">$599,00</td>
+                                       <td class="quantity text-end">135</td>
+                                       
+                                       
+                                   </tr><tr>
+                                       <td class="name fw-bold">
+                                        <img src="img/loja_1/acucar.jpg" class="rounded" alt="" width="50" height="50">
+                                        Açucar kapanda 1Kg</td>
+                                       <td class="price text-end">$499</td>
+                                       <td class="quantity text-end">127</td>
+                                       
+                                     
+                                   </tr><tr>
+                                       <td class="name fw-bold">
+                                        <img src="img/loja_1/arroz.jpg" class="rounded" alt="" width="50" height="50">
+                                        Arroz patriota 1Kg</td>
+                                       <td class="price text-end">$349</td>
+                                       <td class="quantity text-end">98</td>
+                                       
+                                   </tr><tr>
+                                       <td class="name fw-bold">
+                                        <img src="img/loja_1/compal.jpeg" class="rounded" alt="" width="50" height="50">
+                                        Compal manga 1L</td>
+                                       <td class="price text-end">$599</td>
+                                       <td class="quantity text-end">214</td>
+                                   </tr><tr>
+                                       <td class="name fw-bold">
+                                        <img src="img/loja_1/pao.jpg" class="rounded" alt="" width="50" height="50">
+                                        Pão francês</td>
+                                       <td class="price text-end">$1200</td>
+                                       <td class="quantity text-end">51</td>
+                                       
+                                       
+                                   </tr></tbody>
+                           </table>
+                       </div> <!-- / .table-responsive -->
+        
+                     
+
+                        
+       </div>
+       
+       <!--PARTE DE STOCK-->
+       <div id="div_stock" class="div_switch d-none"> 
+            
+        <div class="row row-cols-2 row-cols-md-5 text-dark">
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/caixa compal.jpeg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              
+                <i class="bi bi-chevron-double-up text-start"></i> 
+                <i class="bi bi-trash float-end"></i>
+                <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+              
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais modal-body">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+         
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/saco arroz.jpg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              <i class="bi bi-chevron-double-up text-start"></i> 
+              <i class="bi bi-trash float-end"></i>
+              <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+            
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/grade_agua.jpg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              <i class="bi bi-chevron-double-up text-start"></i> 
+              <i class="bi bi-trash float-end"></i>
+              <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+            
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/litro oleo.jpg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              <i class="bi bi-chevron-double-up text-start"></i> 
+              <i class="bi bi-trash float-end"></i>
+              <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+            
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/caixa compal.jpeg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              
+                <i class="bi bi-chevron-double-up text-start"></i> 
+                <i class="bi bi-trash float-end"></i>
+                <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+              
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais modal-body">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+         
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/paes.jpg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              <i class="bi bi-chevron-double-up text-start"></i> 
+              <i class="bi bi-trash float-end"></i>
+              <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+            
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/grade_agua.jpg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              <i class="bi bi-chevron-double-up text-start"></i> 
+              <i class="bi bi-trash float-end"></i>
+              <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+            
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+
+
+          <div class="col position-relative shadow-sm rounded" style="">
+            <img src="img/loja_1/grade gasosa.jpg"  alt="" width="100%" height="150px">
+           <p class="text-center"><strong></strong></p>
+            <a href="#" class="abrInfo">
+              <i class="bi bi-chevron-double-up text-start"></i> 
+              <i class="bi bi-trash float-end"></i>
+              <i class="bi bi-pencil-square float-end" data-bs-target="#modal_cad_prod" data-bs-toggle="modal"></i>
+            
+            </a>
+            <div class="info card text-start">
+              <a href="#" class="fechaInfo text-center" >
+                <i class="bi bi-chevron-double-down"></i></a>
+                <div class="div_mais">
+                  <h6 class="text-center py-0">Compal 1L</h6>
+                  <h6 class="text-center py-0" style="margin-top: -6px;">marca</h6>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Stock</b></span><span class="text-danger">10 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Venda</b></span><span class="text-danger">5 Uni</span></p>
+                  <p class="d-flex justify-content-between text-dark"><span><b>Local</b></span><span class="text-danger">50</span></p>
+                </div>
+            </div>
+          </div>
+         
+         
+         
+         
+         
+        </div>
+            
+       </div>
+
+      </main>
+    </div>
+  </div>
+
+    
+ 
+</body>
+</html>
+
+<!--MODAL CADASTRAR PRODUTO-->
+<div class="modal fade" id="modal_cad_prod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastrar produtos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="input-group   mb-3">
+            
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-upc-scan"></i></span>
+            <input type="text" class="form-control" placeholder="Código produto" aria-label="Username" aria-describedby="basic-addon1">
+           
+          </div>
+          <div class="mb-3">
+            <input type="file" name="" id="" class="form-control">
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Nome produto</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Descrição</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Marca</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Quantidade</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Local pratileira</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Valor de compra</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Valor de venda</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Fornecedor</label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" id="floatingInput" name="" id="">
+              <option value="">fornecedor</option>
+            </select>
+            <label for="floatingInput">Tipo produto</label>
+          </div>
+          <div class="d-flex">
+            <div class="form-floating">
+              <input type="date" class="form-control" id="floatingInput" placeholder="Data Fabricação">
+              <label for="floatingInput text-black">Data Fabricação</label>
+            </div>
+            <div class="form-floating mx-2">
+              <input type="date" class="form-control" id="floatingInput" placeholder="Data Validade">
+              <label for="floatingInput text-dark">Data Validade</label>
+            </div>
+           
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--MODAL PROMOÇÃO DOS FORNRCEDORES-->
+
+<div class="modal fade" id="modal_fornecedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Fornecedores</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item">And a fifth one</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+  
+  })
+</script>

@@ -1,0 +1,111 @@
+
+Meter Scroll no div do ver mais detalhes no Stock...
+
+//GERENTE
+Mostrar todo Stock ver todos detalhes
+Cadastrar e alterar dados dos produtos
+Cadastrar e alterar dados dos funcionarios
+
+Para armazenar todos os dados de um produto em um banco de dados de uma loja, você pode criar uma tabela que contém campos para cada informação relevante. Aqui está uma estrutura mais completa que inclui diversos campos comuns relacionados a produtos:
+
+Tabela "Produtos":
+
+| Campo               | Tipo de Dado | Descrição                                                 |
+| ------------------- | ------------ | --------------------------------------------------------- |
+| ID                  | Inteiro      | Identificador único do produto (Chave primária)           |
+| Nome                | Texto        | Nome do produto                                           |
+| Descrição           | Texto        | Descrição do produto                                      |
+| Preço               | Decimal      | Preço do produto                                          |
+| Quantidade em Estoque | Inteiro     | Quantidade disponível em estoque                          |
+| Categoria           | Texto        | Categoria à qual o produto pertence                       |
+| Marca               | Texto        | Marca do produto                                          |
+| Fornecedor          | Texto        | Nome do fornecedor do produto                             |
+| Data de Cadastro    | Data/Tempo   | Data de cadastro do produto                               |
+| Data de Atualização | Data/Tempo   | Data da última atualização das informações do produto     |
+| Imagem              | Texto        | Caminho ou URL para a imagem do produto                    |
+| Disponível          | Booleano     | Indica se o produto está disponível para compra ou não    |
+| Características     | Texto        | Lista de características ou atributos do produto          |
+
+Essa estrutura é apenas um exemplo e pode variar de acordo com os requisitos específicos do seu sistema e os dados que você deseja armazenar. Por exemplo, se você deseja rastrear informações de variações do produto, pode ser necessário criar tabelas adicionais para gerenciar esses dados.
+
+Além disso, lembre-se de projetar o banco de dados com boas práticas de normalização para evitar redundância e garantir a integridade dos dados.
+
+Após definir a estrutura da tabela, você precisará criar as consultas SQL adequadas para inserir, atualizar, recuperar e excluir dados da tabela de produtos, de acordo com as necessidades do seu aplicativo ou sistema. Essas consultas dependerão do banco de dados específico que você está utilizando (por exemplo, MySQL, PostgreSQL, SQL Server, etc.).
+
+Por fim, certifique-se de implementar medidas de segurança para proteger o acesso e os dados do banco, como sanitização de entrada, prevenção de injeção de SQL e autenticação adequada para garantir que apenas usuários autorizados possam acessar e modificar os dados.
+
+
+
+No controle de estoque, diversos dados são importantes para gerenciar de forma eficiente os produtos armazenados. Alguns dos dados comuns que se controlam em um estoque incluem:
+
+1. Identificação do produto:
+   - Código do produto
+   - Descrição do produto
+   - Número de série (se aplicável)
+   - SKU (Stock Keeping Unit)
+
+2. Quantidade:
+   - Quantidade disponível em estoque
+   - Quantidade mínima e máxima desejada
+   - Quantidade reservada para pedidos pendentes ou outros fins
+
+3. Localização:
+   - Localização física no armazém ou depósito
+   - Prateleira, corredor, seção etc.
+
+4. Movimentação:
+   - Data de entrada no estoque
+   - Data de saída do estoque
+   - Origem e destino das movimentações (fornecedor, cliente, transferência interna)
+
+5. Preço e valor:
+   - Preço de compra
+   - Preço de venda
+   - Valor total do estoque
+
+6. Fornecedores:
+   - Informações sobre os fornecedores do produto, incluindo nome, contato, telefone, endereço etc.
+
+7. Vendas e demanda:
+   - Histórico de vendas
+   - Demanda média e sazonalidade
+   - Ponto de reposição ou ressuprimento
+
+8. Data de validade (para produtos perecíveis):
+   - Data de validade ou vencimento do produto
+   - Controle de lote
+
+9. Informações adicionais:
+   - Características específicas do produto
+   - Notas ou observações relevantes
+
+Esses são apenas alguns exemplos de dados comumente controlados em um estoque. Os dados necessários podem variar dependendo do tipo de negócio, da indústria e dos requisitos específicos de gerenciamento de estoque. É importante adaptar os dados de controle de estoque de acordo com as necessidades do seu negócio para garantir uma gestão eficiente e precisa do inventário.
+
+
+FUNCIONARIO
+
+Para armazenar os dados de um funcionário em um banco de dados de uma loja, você pode criar uma tabela que contenha os campos necessários para cada informação relevante. Aqui estão alguns exemplos de dados comuns que podem ser armazenados:
+
+Tabela "Funcionários":
+
+| Campo             | Tipo de Dado | Descrição                                                  |
+| ----------------- | ------------ | ---------------------------------------------------------- |
+| ID                | Inteiro      | Identificador único do funcionário (Chave primária)         |
+| Nome              | Texto        | Nome completo do funcionário                                |
+| Cargo             | Texto        | Cargo ou função desempenhada pelo funcionário               |
+| Departamento      | Texto        | Departamento ou setor em que o funcionário está alocado     |
+| Data de Contratação | Data/Tempo | Data de contratação do funcionário                          |
+| Data de Nascimento | Data/Tempo   | Data de nascimento do funcionário                            |
+| Endereço          | Texto        | Endereço residencial do funcionário                         |
+| E-mail            | Texto        | Endereço de e-mail do funcionário                           |
+| Telefone          | Texto        | Número de telefone do funcionário                           |
+| Salário           | Decimal      | Salário atual do funcionário                               |
+| CPF               | Texto        | Número do CPF (Cadastro de Pessoa Física) do funcionário    |
+| RG                | Texto        | Número do RG (Registro Geral) do funcionário                |
+| Data de Cadastro  | Data/Tempo   | Data de cadastro do funcionário no sistema                  |
+
+Essa estrutura é apenas um exemplo e pode variar de acordo com os requisitos específicos do seu sistema e os dados que você deseja armazenar. Além desses campos, você pode adicionar outros campos conforme necessário, como informações de emergência, número de conta bancária para depósito de salário, benefícios, entre outros.
+
+Após definir a estrutura da tabela, você precisará criar as consultas SQL adequadas para inserir, atualizar, recuperar e excluir dados da tabela de funcionários, de acordo com as necessidades do seu aplicativo ou sistema. Essas consultas dependerão do banco de dados específico que você está utilizando (por exemplo, MySQL, PostgreSQL, SQL Server, etc.).
+
+Lembre-se de implementar medidas de segurança, como a criptografia de dados sensíveis (como CPF) e a proteção contra acesso não autorizado ao banco de dados.
